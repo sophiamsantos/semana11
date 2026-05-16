@@ -1,0 +1,355 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    color: #1f3a5f;
+}
+
+header p {
+    color: #555;
+    margin-top: 4px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.controls input,
+.controls select,
+.controls button {
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.controls input {
+    min-width: 240px;
+}
+
+.controls button {
+    background-color: #1f3a5f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #2d568a;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: #eee;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.card-title:hover {
+    color: #1f3a5f;
+    text-decoration: underline;
+}
+
+.card-category {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.card-price {
+    font-size: 18px;
+    color: #1f7a3a;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.card-buttons button,
+.card-buttons a {
+    flex: 1;
+    padding: 8px;
+    font-size: 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.card-buttons button:hover,
+.card-buttons a:hover {
+    opacity: 0.85;
+}
+
+.btn-details {
+    background-color: #1f3a5f;
+    color: #fff;
+}
+
+.btn-highlight {
+    background-color: #f5a623;
+    color: #fff;
+}
+
+.card.highlight {
+    border: 3px solid #f5a623;
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.6);
+    background-color: #fff8ec;
+}
+
+.in-stock {
+    color: #1f7a3a;
+    font-weight: bold;
+}
+
+.out-stock {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+/* ============================================================
+   Página de detalhes (detalhes.html)
+   ============================================================ */
+
+.details-actions {
+    max-width: 1000px;
+    margin: 0 auto 16px;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #1f3a5f;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #2d568a;
+}
+
+.product-details-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.product-details-page .empty {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 720px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.details-image {
+    background-color: #f4f6f8;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-image img {
+    max-width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.details-info h2 {
+    color: #1f3a5f;
+    font-size: 26px;
+    margin: 6px 0 12px;
+}
+
+.details-brand,
+.details-rating,
+.details-stock {
+    margin: 6px 0;
+    color: #444;
+    font-size: 14px;
+}
+
+.details-rating {
+    color: #f5a623;
+    font-weight: bold;
+}
+
+.details-price {
+    font-size: 30px;
+    color: #1f7a3a;
+    font-weight: bold;
+    margin: 14px 0 4px;
+}
+
+.details-parcelas {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.btn-buy {
+    background-color: #1f7a3a;
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 12px;
+    transition: background-color 0.2s;
+}
+
+.btn-buy:hover:not(:disabled) {
+    background-color: #28944b;
+}
+
+.btn-buy:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.details-section {
+    border-top: 1px solid #eee;
+    padding-top: 18px;
+    margin-top: 18px;
+}
+
+.details-section h3 {
+    color: #1f3a5f;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.details-section p {
+    line-height: 1.5;
+    color: #333;
+}
+
+.details-features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.details-features li {
+    padding: 8px 0 8px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    color: #333;
+}
+
+.details-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #1f7a3a;
+    font-weight: bold;
+}
+
+.details-features li:last-child {
+    border-bottom: none;
+}
+
+.details-empty {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.details-empty h2 {
+    color: #c0392b;
+    margin-bottom: 12px;
+}
+
+.details-empty p {
+    color: #555;
+    margin-bottom: 20px;
+}
