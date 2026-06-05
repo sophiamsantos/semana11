@@ -25,6 +25,25 @@ header p {
     margin-top: 4px;
 }
 
+.top-nav {
+    margin-top: 12px;
+}
+
+.btn-nav {
+    display: inline-block;
+    background-color: #1f7a3a;
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-nav:hover {
+    background-color: #28944b;
+}
+
 .controls {
     display: flex;
     flex-wrap: wrap;
@@ -352,4 +371,75 @@ main {
 .details-empty p {
     color: #555;
     margin-bottom: 20px;
+}
+
+/* ============================================================
+   Dashboard (dashboard.html)
+   ============================================================ */
+
+.kpi-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background-color: #fff;
+    border-radius: 10px;
+    border-top: 4px solid #1f3a5f;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.kpi-valor {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.kpi-rotulo {
+    font-size: 13px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.chart-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.chart-card h3 {
+    color: #1f3a5f;
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+/* gráfico que ocupa a largura toda da grade */
+.chart-card-wide {
+    grid-column: 1 / -1;
+}
+
+/* altura controlada para os gráficos responsivos */
+.chart-wrap {
+    position: relative;
+    height: 280px;
+}
+
+.chart-card-wide .chart-wrap {
+    height: 340px;
 }
