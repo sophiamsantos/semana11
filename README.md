@@ -1,7 +1,7 @@
 # Mini Ecommerce — Semana 11
 
-**Aluno:** [Seu Nome]  
-**Matrícula:** [Sua Matrícula]
+**Aluno:** Sophia Emanuelle de Morais dos Santos  
+**Matrícula:** 925579
 
 ---
 
