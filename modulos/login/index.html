@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Ecommerce - Login</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .login-logo h1 {
+            color: #1f3a5f;
+            font-size: 28px;
+        }
+
+        .login-logo p {
+            color: #777;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #1f3a5f;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 13px;
+            background-color: #1f3a5f;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 6px;
+        }
+
+        .btn-login:hover {
+            background-color: #2d568a;
+        }
+
+        .login-error {
+            background-color: #fde8e8;
+            color: #c0392b;
+            border: 1px solid #f5c6c6;
+            border-radius: 7px;
+            padding: 10px 14px;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .login-hint {
+            margin-top: 20px;
+            background-color: #eef4ff;
+            border-radius: 7px;
+            padding: 12px 14px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .login-hint strong { color: #1f3a5f; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <h1>🛒 Ecommerce</h1>
+            <p>Faça login para continuar</p>
+        </div>
+
+        <div id="login-error" class="login-error">
+            Login ou senha inválidos. Tente novamente.
+        </div>
+
+        <div class="form-group">
+            <label for="login-input">Login</label>
+            <input type="text" id="login-input" placeholder="Digite seu login" autocomplete="username">
+        </div>
+
+        <div class="form-group">
+            <label for="senha-input">Senha</label>
+            <input type="password" id="senha-input" placeholder="Digite sua senha" autocomplete="current-password">
+        </div>
+
+        <button class="btn-login" id="btn-login">Entrar</button>
+
+        <div class="login-hint">
+            <strong>Usuários de teste:</strong><br>
+            Login: <strong>admin</strong> | Senha: <strong>123</strong><br>
+            Login: <strong>user</strong> | Senha: <strong>123</strong>
+        </div>
+    </div>
+
+    <!-- Importa o módulo de login com caminho relativo à raiz -->
+    <script>
+        // Dados dos usuários (replicados aqui para funcionar offline/sem servidor)
+        const usuariosDB = [
+            { id: 1, nome: "Administrador", login: "admin", senha: "123", email: "admin@ecommerce.com" },
+            { id: 2, nome: "Usuário",       login: "user",  senha: "123", email: "user@ecommerce.com"  }
+        ];
+
+        function loginUser(login, senha) {
+            const usuario = usuariosDB.find(u => u.login === login && u.senha === senha);
+            if (usuario) {
+                const usuarioCorrente = {
+                    id:    usuario.id,
+                    nome:  usuario.nome,
+                    login: usuario.login,
+                    senha: usuario.senha,
+                    email: usuario.email
+                };
+                sessionStorage.setItem("usuarioCorrente", JSON.stringify(usuarioCorrente));
+                return true;
+            }
+            return false;
+        }
+
+        function getUsuarioCorrente() {
+            const dados = sessionStorage.getItem("usuarioCorrente");
+            return dados ? JSON.parse(dados) : null;
+        }
+
+        // Se já estiver logado, redireciona para a home
+        if (getUsuarioCorrente()) {
+            window.location.href = "../../index.html";
+        }
+
+        document.getElementById("btn-login").addEventListener("click", tentarLogin);
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") tentarLogin();
+        });
+
+        function tentarLogin() {
+            const login = document.getElementById("login-input").value.trim();
+            const senha = document.getElementById("senha-input").value;
+            const erro  = document.getElementById("login-error");
+
+            if (!login || !senha) {
+                erro.textContent = "Preencha login e senha.";
+                erro.style.display = "block";
+                return;
+            }
+
+            if (loginUser(login, senha)) {
+                erro.style.display = "none";
+                window.location.href = "../../index.html";
+            } else {
+                erro.textContent = "Login ou senha inválidos. Tente novamente.";
+                erro.style.display = "block";
+                document.getElementById("senha-input").value = "";
+                document.getElementById("senha-input").focus();
+            }
+        }
+    </script>
+</body>
+</html>

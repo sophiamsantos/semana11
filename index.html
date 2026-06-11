@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Ecommerce - Catálogo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./assets/js/login.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🛒 Ecommerce</h1>
+        <p>Catálogo de produtos em cards</p>
+        <nav class="top-nav">
+            <a href="dashboard.html" class="btn-nav">📊 Ver dashboard de dados</a>
+            <a href="favoritos.html" class="btn-nav btn-nav-fav">❤️ Meus Favoritos</a>
+        </nav>
+        <div id="area-login" class="area-login"></div>
+    </header>
+
+    <section class="controls">
+        <input id="search" type="text" placeholder="Buscar produto pelo nome...">
+        <select id="category">
+            <option value="Todas">Todas</option>
+        </select>
+        <button id="btnRender">Limpar filtros</button>
+    </section>
+
+    <main>
+        <section id="product-list" class="product-list"></section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

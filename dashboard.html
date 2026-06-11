@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Ecommerce - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Ecommerce</h1>
+        <p>Dashboard de visualização de dados do catálogo</p>
+    </header>
+
+    <section class="details-actions">
+        <a href="index.html" class="btn-back">&larr; Voltar para o catálogo</a>
+    </section>
+
+    <main>
+        <!-- Cartões de indicadores (KPIs) -->
+        <section id="kpi-cards" class="kpi-cards"></section>
+
+        <!-- Filtro por categoria que atualiza os gráficos -->
+        <section class="controls">
+            <label for="dash-category" style="align-self:center;color:#555;font-size:14px;">
+                Filtrar por categoria:
+            </label>
+            <select id="dash-category">
+                <option value="Todas">Todas</option>
+            </select>
+            <button id="dash-reset">Limpar filtro</button>
+        </section>
+
+        <!-- Grade de gráficos -->
+        <section class="charts-grid">
+            <article class="chart-card">
+                <h3>Produtos por categoria</h3>
+                <div class="chart-wrap"><canvas id="chartCategorias"></canvas></div>
+            </article>
+
+            <article class="chart-card">
+                <h3>Disponibilidade em estoque</h3>
+                <div class="chart-wrap"><canvas id="chartEstoque"></canvas></div>
+            </article>
+
+            <article class="chart-card">
+                <h3>Preço médio por categoria</h3>
+                <div class="chart-wrap"><canvas id="chartPrecoCategoria"></canvas></div>
+            </article>
+
+            <article class="chart-card">
+                <h3>Avaliação média por marca</h3>
+                <div class="chart-wrap"><canvas id="chartAvaliacaoMarca"></canvas></div>
+            </article>
+
+            <article class="chart-card chart-card-wide">
+                <h3>Preço por produto</h3>
+                <div class="chart-wrap"><canvas id="chartPrecoProduto"></canvas></div>
+            </article>
+        </section>
+    </main>
+
+    <!-- app.js apenas define a base de dados (data) e funções utilitárias aqui -->
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
