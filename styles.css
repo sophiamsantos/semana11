@@ -443,3 +443,101 @@ main {
 .chart-card-wide .chart-wrap {
     height: 340px;
 }
+
+/* ============================================================
+   Login - área no header
+   ============================================================ */
+
+.area-login {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.login-saudacao {
+    font-size: 14px;
+    color: #444;
+}
+
+.btn-entrar {
+    display: inline-block;
+    background-color: #1f3a5f;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-entrar:hover {
+    background-color: #2d568a;
+}
+
+.btn-logout {
+    display: inline-block;
+    background-color: #c0392b;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #e74c3c;
+}
+
+.btn-nav-fav {
+    background-color: #c0392b;
+}
+
+.btn-nav-fav:hover {
+    background-color: #e74c3c;
+}
+
+/* ============================================================
+   Botão de Favoritar nos cards
+   ============================================================ */
+
+.btn-favoritar {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+    line-height: 1;
+}
+
+.btn-favoritar:hover {
+    transform: scale(1.2);
+    border-color: #e74c3c;
+}
+
+.btn-favoritar.favoritado {
+    border-color: #e74c3c;
+    background-color: #fff0f0;
+}
+
+/* Card com borda destacada quando favoritado */
+.card-favorito {
+    border: 2px solid #e74c3c !important;
+    box-shadow: 0 4px 16px rgba(192, 57, 43, 0.15) !important;
+}
+
+.card-favorito::after {
+    content: "❤️ Favorito";
+    display: block;
+    font-size: 11px;
+    color: #c0392b;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 4px;
+}

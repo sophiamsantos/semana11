@@ -208,6 +208,39 @@ function getQueryParam(nome) {
 // ============================================================
 const productList = document.getElementById("product-list");
 
+// ============================================================
+// FAVORITOS - funções utilitárias (usadas em index.html e favoritos.html)
+// ============================================================
+
+function getUsuarioCorrente() {
+    const dados = sessionStorage.getItem("usuarioCorrente");
+    return dados ? JSON.parse(dados) : null;
+}
+
+function getFavoritos(userId) {
+    const raw = localStorage.getItem("favoritos_" + userId);
+    return raw ? JSON.parse(raw) : [];
+}
+
+function setFavoritos(userId, ids) {
+    localStorage.setItem("favoritos_" + userId, JSON.stringify(ids));
+}
+
+function isFavorito(userId, produtoId) {
+    return getFavoritos(userId).includes(produtoId);
+}
+
+function toggleFavorito(userId, produtoId) {
+    let favs = getFavoritos(userId);
+    const idx = favs.indexOf(produtoId);
+    if (idx === -1) { favs.push(produtoId); }
+    else            { favs.splice(idx, 1);  }
+    setFavoritos(userId, favs);
+    return favs;
+}
+
+// ============================================================
+
 if (productList) {
     const searchInput = document.querySelector("#search");
     const categorySelect = document.querySelector("#category");
@@ -263,8 +296,39 @@ if (productList) {
             card.classList.toggle("highlight");
         });
 
+        // Botão de favoritar
+        const btnFav = document.createElement("button");
+        btnFav.classList.add("btn-favoritar");
+        btnFav.title = "Favoritar";
+
+        const usuarioAtual = getUsuarioCorrente();
+        const jaFavoritado  = usuarioAtual && isFavorito(usuarioAtual.id, produto.id);
+        if (jaFavoritado) {
+            btnFav.classList.add("favoritado");
+            card.classList.add("card-favorito");
+        }
+        btnFav.innerHTML = jaFavoritado ? "❤️" : "🤍";
+
+        btnFav.addEventListener("click", function () {
+            const usuario = getUsuarioCorrente();
+            if (!usuario) {
+                // Usuário não logado — exibe aviso e redireciona
+                if (confirm("Você precisa estar logado para favoritar produtos.\nDeseja fazer login agora?")) {
+                    window.location.href = "./modulos/login/index.html";
+                }
+                return;
+            }
+            const novaLista = toggleFavorito(usuario.id, produto.id);
+            const agora = novaLista.includes(produto.id);
+            btnFav.innerHTML = agora ? "❤️" : "🤍";
+            btnFav.classList.toggle("favoritado", agora);
+            card.classList.toggle("card-favorito", agora);
+            btnFav.title = agora ? "Remover dos favoritos" : "Favoritar";
+        });
+
         botoes.appendChild(linkDetalhes);
         botoes.appendChild(btnDestacar);
+        botoes.appendChild(btnFav);
 
         card.appendChild(img);
         card.appendChild(titulo);
